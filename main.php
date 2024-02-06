@@ -2,7 +2,7 @@
 /*
 Plugin Name: WP Publications
 Description: Adds a Publications tab to wordpress. Allows authors to add a list of academic publications to the blog.
-Version: 0.12.1.2023
+Version: 0.2.6.2024
 Author: UFS
 */
 
