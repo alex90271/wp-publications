@@ -101,37 +101,3 @@ echo wpap_display_publications_formatted($opts);
 </div>
 `
 
-= What is a starter for some CSS styling? =
-
-`
-.wpap .publication-title {
-    font-size: 110%;
-    font-weight: bold;
-}
-.wpap p {
-    margin: 0;
-    padding: 0;
-}
-.wpap ul {
-    list-style: none;
-    margin: 0;
-}
-.wpap li {
-    margin-bottom: 15px;
-}
-`
-
-
-
-
-
-== Changelog ==
-
-0.12.1.2023:
- Cloned from https://github.com/bradjc/wordpress-academic-pubs
- Implemented displaying DOI links; updates styling
- Adaptations to run on WP 6.4.1
-
-
-
-
