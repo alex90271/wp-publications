@@ -25,22 +25,22 @@ while (have_posts()):
 
 				<?php
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true))) {
-					echo '<a class="publication-button button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true) . '">' . __('PDF', 'wpap') . '</a>';
+					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true) . '">' . __('PDF', 'wpap') . '</button>';
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true))) {
-					echo '<a class="publication-button button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true) . __('BibTex', 'wpap') . '</a>';
+					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true) . __('BibTex', 'wpap') . '</button>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true))) {
-					echo '<a class="publication-button button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true) . '">' . __('PPT', 'wpap') . '</a>';
+					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true) . '">' . __('PPT', 'wpap') . '</button>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-website', true))) {
-					echo '<a class="publication-button button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-website', true) . '">' . __('Website', 'wpap') . '</a>';
+					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-website', true) . '">' . __('Website', 'wpap') . '</button>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-doi', true))) {
-					echo '<a class="publication-button button" href="https://doi.org/' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '">' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '</a>';
+					echo '<button class="wpap-button" href="https://doi.org/' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '">' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '</button>';
 
 				}
 				?>
