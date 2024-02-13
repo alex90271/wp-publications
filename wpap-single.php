@@ -19,28 +19,31 @@ while (have_posts()):
 					<?php echo get_post_meta(get_the_id(), 'wpap_publication-option-authors', true); ?>
 				</p>
 				<p>
-					<strong>Published(s):</strong>
+					<strong>Published:</strong>
 					<?php echo get_the_date(); ?>
+				</p>
+				<p>
+					<?php echo implode(',',get_the_taxonomies( get_the_id(), array('publication-category','template' => '%z%l', 'term_template' => '%2$s' )) ) ?>
 				</p>
 
 				<?php
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true))) {
-					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true) . '">' . __('PDF', 'wpap') . '</button>';
+					echo '<a class="wpap-button-link" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-paperpdf', true) . '"><button class="wpap-button">' . __('PDF', 'wpap') . '</button></a>';
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true))) {
-					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true) . __('BibTex', 'wpap') . '</button>';
+					echo '<a class="wpap-button-link" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-bibtex', true) . '"><button class="wpap-button">' . __('BibTex', 'wpap') . '</button></a>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true))) {
-					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true) . '">' . __('PPT', 'wpap') . '</button>';
+					echo '<a class="wpap-button-link" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-slidesppt', true) . '"><button class="wpap-button">' . __('PPT', 'wpap') . '</button></a>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-website', true))) {
-					echo '<button class="wpap-button" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-website', true) . '">' . __('Website', 'wpap') . '</button>';
+					echo '<a class="wpap-button-link" href="' . get_post_meta(get_the_id(), 'wpap_publication-option-website', true) . '"><button class="wpap-button">' . __('Website', 'wpap') . '</button></a>';
 
 				}
 				if (!empty(get_post_meta(get_the_id(), 'wpap_publication-option-doi', true))) {
-					echo '<button class="wpap-button" href="https://doi.org/' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '">' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '</button>';
+					echo '<a class="wpap-button-link" href="https://doi.org/' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '"><button class="wpap-button">' . get_post_meta(get_the_id(), 'wpap_publication-option-doi', true) . '</button>';
 
 				}
 				?>

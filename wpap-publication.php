@@ -29,7 +29,7 @@ function wpap_create_publication()
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
-		'publicly_queryable' => false,
+		'publicly_queryable' => true,
 		'exclude_from_search' => true,
 		'show_ui' => true,
 		"show_in_nav_menus" => true,
@@ -268,42 +268,38 @@ function wpap_get_pubs_formatted($options)
 		$links = array();
 		if (strtolower($options['show_links']) == 'true') {
 			if (!empty($pub['pdf_url'])) {
-				$link = '<button class="wpap-button" href="' . $pub['pdf_url'] . '">' . __('PDF', 'wpap') . '</button>';
+				$link = '<a class="wpap-button-link" href="' . $pub['pdf_url'] . '"><button class="wpap-button"> ' . __('PDF', 'wpap') . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['bibtex_url'])) {
-				$link = '<button class="wpap-button" href="' . $pub['bibtex_url'] . '">' . __('BibTex', 'wpap') . '</button>';
+				$link = '<a class="wpap-button-link" href="' . $pub['bibtex_url'] . '"><button class="wpap-button"> ' . __('BibTex', 'wpap') . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['slides_ppt'])) {
-				$link = '<button class="wpap-button" href="' . $pub['slides_ppt'] . '">' . __('PPT', 'wpap') . '</button>';
+				$link = '<a class="wpap-button-link" href="' . $pub['slides_ppt'] . '"><button class="wpap-button"> ' . __('PPT', 'wpap') . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['website_url'])) {
-				$link = '<button class="wpap-button" href="' . $pub['website_url'] . '">' . __('Website', 'wpap') . '</button>';
+				$link = '<a class="wpap-button-link" href="' . $pub['website_url'] . '"><button class="wpap-button"> ' . __('Website', 'wpap') . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['DOI'])) {
-				$link = '<button class="wpap-button" href="https://doi.org/' . $pub['DOI'] . '">' . $pub['DOI'] . '</button>';
+				$link = '<a class="wpap-button-link" href="https://doi.org/' . $pub['DOI'] . '"><button class="wpap-button"> ' . $pub['DOI'] . '</button></a>';
 				array_push($links, $link);
 			}
-			$links_str = '<p class="publication-links">' . implode(' | ', $links) . '</p>';
+			$links_str = '<p class="wpap-links">' . implode(' | ', $links) . '</p>';
 		}
 		$published_date = get_post_datetime($pub['id']);
 		$published_categories = get_the_taxonomies(
 			$pub['id'],
-			array(
-				/* translators: %s: Taxonomy label, %l: List of terms formatted as per $term_template. */
-				'template' => __('%s: %l'),
-				'term_template' => '<a href="%1$s">%2$s</a>',
-			)
+			array('publication-category','template' => '%z%l', 'term_template' => '%2$s' )
 		);
 
-		$header = '<p class="publication-title publication' . $pub['id'] . '">' . $pub['title'] . '</p>';
-		$body = '' . $published_date->format('M d, Y') . '<br>' . implode(' | ', $published_categories) . '<br>';
-		$body .= '' . $pub['authors'] . '';
+		$header = '<p class="wpap-title wpap-' . $pub['id'] . '">' . $pub['title'] . '<br></p>';
+		$category = '<p class="wpap-category">'.  implode(' | ', $published_categories) .'</p> | ' . $published_date->format('M d, Y') . '';
+		$body = '<p>' . $pub['authors'] . '</p>';
 
-		$pubout = $header . $body . '' . ((count($links) > 0) ? $links_str : '');
+		$pubout = $category . $header . $body . '' . ((count($links) > 0) ? $links_str : '');
 
 		$output .= '<tr><td>' . $pubout . '</td></tr>';
 
