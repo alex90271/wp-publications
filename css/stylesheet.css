@@ -1,5 +1,9 @@
 .wpap-button {
     border: none;
+    background-color: lightgrey;
+    color: black;
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .wpap-title{
@@ -12,4 +16,30 @@
     padding: 0px 10px 0px 10px; 
     border-radius: 10px; 
     display: inline-flex; 
+}
+
+#wpapSearch {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+
+#wpapTable {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+#wpapTable th,td {
+    padding: 10px;
+}
+
+#wpapTable tr:nth-child(odd) {
+    background-color: darkgrey;
+}
+
+.wpap-title {
+    font-weight: 600;
+    margin-top: 5px;    
 }
