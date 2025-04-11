@@ -8,8 +8,8 @@ Author: UFS
 
 function wpap_required_scripts()
 {
-    wp_enqueue_style('wpap-css', plugins_url('/css/stylesheet.css', __FILE__));
-    wp_enqueue_script('search-wpap-js', plugins_url('/js/search.js', __FILE__));
+    wp_enqueue_style('wpap-css', plugins_url('/css/stylesheet.css', __FILE__), array(), '0.2.13.2024.7');
+    wp_enqueue_script('search-wpap-js', plugins_url('/js/search.js', __FILE__), array(), '0.2.13.2024.3');
 }
 wpap_required_scripts();
 

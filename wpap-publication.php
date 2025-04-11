@@ -97,10 +97,22 @@ $publication_meta_boxes = array(
 		'extra' => __('The PDF of the paper.', 'wpap')
 	),
 	array(
+		'title' => __('PDF Button Text', 'wpap'),
+		'name' => 'wpap_publication-option-pdf-text',
+		'type' => 'inputtext',
+		'extra' => __('Custom text for PDF button (recommend <20 characters). Leave empty for default "PDF".', 'wpap')
+	),
+	array(
 		'title' => __('BibTex', 'wpap'),
 		'name' => 'wpap_publication-option-bibtex',
 		'type' => 'upload',
 		'extra' => __('A .bib file containing the BibTex information.', 'wpap')
+	),
+	array(
+		'title' => __('BibTex Button Text', 'wpap'),
+		'name' => 'wpap_publication-option-bibtex-text',
+		'type' => 'inputtext',
+		'extra' => __('Custom text for BibTex button (recommend <20 characters). Leave empty for default "BibTex".', 'wpap')
 	),
 	array(
 		'title' => __('Slides (Powerpoint)', 'wpap'),
@@ -109,19 +121,35 @@ $publication_meta_boxes = array(
 		'extra' => __('The powerpoint version of the slides.', 'wpap')
 	),
 	array(
+		'title' => __('Slides Button Text', 'wpap'),
+		'name' => 'wpap_publication-option-slidesppt-text',
+		'type' => 'inputtext',
+		'extra' => __('Custom text for Slides button (recommend <20 characters). Leave empty for default "PPT".', 'wpap')
+	),
+	array(
 		'title' => __('Website', 'wpap'),
 		'name' => 'wpap_publication-option-website',
 		'type' => 'inputtext',
 		'extra' => __('A URL for the project/paper website.', 'wpap')
 	),
 	array(
+		'title' => __('Website Button Text', 'wpap'),
+		'name' => 'wpap_publication-option-website-text',
+		'type' => 'inputtext',
+		'extra' => __('Custom text for Website button (recommend <20 characters). Leave empty for default "Website".', 'wpap')
+	),
+	array(
 		'title' => __('DOI', 'wpap'),
 		'name' => 'wpap_publication-option-doi',
 		'type' => 'inputtext',
 		'extra' => __('Digital Object Identifier (DOI)', 'wpap')
+	),
+	array(
+		'title' => __('DOI Button Text', 'wpap'),
+		'name' => 'wpap_publication-option-doi-text',
+		'type' => 'inputtext',
+		'extra' => __('Custom text for DOI button (recommend <20 characters). Leave empty for default DOI value.', 'wpap')
 	)
-
-
 );
 
 function wpap_add_publication_options()
@@ -239,10 +267,15 @@ function wpap_get_pubs_array($options)
 		$pub['title'] = get_the_title();
 		$pub['authors'] = get_post_meta($pub['id'], 'wpap_publication-option-authors', true);
 		$pub['pdf_url'] = get_post_meta($pub['id'], 'wpap_publication-option-paperpdf', true);
+		$pub['pdf_text'] = get_post_meta($pub['id'], 'wpap_publication-option-pdf-text', true);
 		$pub['DOI'] = get_post_meta($pub['id'], 'wpap_publication-option-doi', true);
+		$pub['doi_text'] = get_post_meta($pub['id'], 'wpap_publication-option-doi-text', true);
 		$pub['bibtex_url'] = get_post_meta($pub['id'], 'wpap_publication-option-bibtex', true);
+		$pub['bibtex_text'] = get_post_meta($pub['id'], 'wpap_publication-option-bibtex-text', true);
 		$pub['slides_ppt'] = get_post_meta($pub['id'], 'wpap_publication-option-slidesppt', true);
+		$pub['slides_text'] = get_post_meta($pub['id'], 'wpap_publication-option-slidesppt-text', true);
 		$pub['website_url'] = get_post_meta($pub['id'], 'wpap_publication-option-website', true);
+		$pub['website_text'] = get_post_meta($pub['id'], 'wpap_publication-option-website-text', true);
 		$pubs[] = $pub;
 		$count++;
 	}
@@ -268,23 +301,28 @@ function wpap_get_pubs_formatted($options)
 		$links = array();
 		if (strtolower($options['show_links']) == 'true') {
 			if (!empty($pub['pdf_url'])) {
-				$link = '<a class="wpap-button-link" href="' . $pub['pdf_url'] . '"><button class="wpap-button"> ' . __('PDF', 'wpap') . '</button></a>';
+				$pdf_text = !empty($pub['pdf_text']) ? $pub['pdf_text'] : __('PDF', 'wpap');
+				$link = '<a class="wpap-button-link" href="' . $pub['pdf_url'] . '"><button class="wpap-button"> ' . $pdf_text . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['bibtex_url'])) {
-				$link = '<a class="wpap-button-link" href="' . $pub['bibtex_url'] . '"><button class="wpap-button"> ' . __('BibTex', 'wpap') . '</button></a>';
+				$bibtex_text = !empty($pub['bibtex_text']) ? $pub['bibtex_text'] : __('BibTex', 'wpap');
+				$link = '<a class="wpap-button-link" href="' . $pub['bibtex_url'] . '"><button class="wpap-button"> ' . $bibtex_text . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['slides_ppt'])) {
-				$link = '<a class="wpap-button-link" href="' . $pub['slides_ppt'] . '"><button class="wpap-button"> ' . __('PPT', 'wpap') . '</button></a>';
+				$slides_text = !empty($pub['slides_text']) ? $pub['slides_text'] : __('PPT', 'wpap');
+				$link = '<a class="wpap-button-link" href="' . $pub['slides_ppt'] . '"><button class="wpap-button"> ' . $slides_text . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['website_url'])) {
-				$link = '<a class="wpap-button-link" href="' . $pub['website_url'] . '"><button class="wpap-button"> ' . __('Website', 'wpap') . '</button></a>';
+				$website_text = !empty($pub['website_text']) ? $pub['website_text'] : __('Website', 'wpap');
+				$link = '<a class="wpap-button-link" href="' . $pub['website_url'] . '"><button class="wpap-button"> ' . $website_text . '</button></a>';
 				array_push($links, $link);
 			}
 			if (!empty($pub['DOI'])) {
-				$link = '<a class="wpap-button-link" href="https://doi.org/' . $pub['DOI'] . '"><button class="wpap-button"> ' . $pub['DOI'] . '</button></a>';
+				$doi_text = !empty($pub['doi_text']) ? $pub['doi_text'] : $pub['DOI'];
+				$link = '<a class="wpap-button-link" href="https://doi.org/' . $pub['DOI'] . '"><button class="wpap-button"> ' . $doi_text . '</button></a>';
 				array_push($links, $link);
 			}
 			$links_str = '<p class="wpap-links">' . implode(' | ', $links) . '</p>';
