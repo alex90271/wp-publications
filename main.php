@@ -8,7 +8,7 @@ Author: UFS
 
 function wpap_required_scripts()
 {
-    $ver = 0.4.13.2024.1
+    $ver = '0.4.13.2024.1';
     wp_enqueue_style('wpap-css', plugins_url('/css/stylesheet.css', __FILE__), array(), $ver);
     wp_enqueue_script('search-wpap-js', plugins_url('/js/search.js', __FILE__), array(), $ver);
 }
