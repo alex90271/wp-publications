@@ -2,14 +2,15 @@
 /*
 Plugin Name: WP Publications
 Description: Adds a Publications tab to wordpress. Allows authors to add a list of academic publications to the blog.
-Version: 0.2.13.2024
+Version: 0.4.13.2024.1
 Author: UFS
 */
 
 function wpap_required_scripts()
 {
-    wp_enqueue_style('wpap-css', plugins_url('/css/stylesheet.css', __FILE__), array(), '0.2.13.2024.7');
-    wp_enqueue_script('search-wpap-js', plugins_url('/js/search.js', __FILE__), array(), '0.2.13.2024.3');
+    $ver = 0.4.13.2024.1
+    wp_enqueue_style('wpap-css', plugins_url('/css/stylesheet.css', __FILE__), array(), $ver);
+    wp_enqueue_script('search-wpap-js', plugins_url('/js/search.js', __FILE__), array(), $ver);
 }
 wpap_required_scripts();
 
@@ -47,6 +48,7 @@ add_action('admin_print_styles', 'wpap_styles');
 
 require_once('wpap-functions.php');
 require_once('wpap-publication.php');
+require_once('wpap-settings.php');  // Add this line
 
 add_filter('upload_mimes', 'wpap_add_bib_to_mimes');
 add_filter('manage_edit-publication_columns', 'wpap_show_publication_column');
