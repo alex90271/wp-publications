@@ -391,7 +391,7 @@ function wpap_js_search()
 
 	$searchbar = '<div>';
 	$searchbar .= '<input type="text" id="wpapSearch" onkeyup="searchList()" placeholder="Search publications..."/>';
-	$searchbar .= '<p style="padding-top: 1em;">' . implode(' | ', wpap_get_taxonomies()) . '</p>';
+	$searchbar .= '<p style="padding-top: 1em;">' . implode(' ', wpap_get_taxonomies()) . '</p>';
 	$searchbar .= '</div>';
 
 	return $searchbar;
