@@ -31,6 +31,7 @@ add_action('admin_enqueue_scripts', 'wpap_admin_scripts');
 function wpap_register_settings() {
     register_setting('wpap_settings_group', 'wpap_button_color');
     register_setting('wpap_settings_group', 'wpap_button_hover_color');
+    register_setting('wpap_settings_group', 'wpap_button_text_color');
 }
 add_action('admin_init', 'wpap_register_settings');
 
@@ -38,6 +39,7 @@ add_action('admin_init', 'wpap_register_settings');
 function wpap_settings_page_callback() {
     $button_color = get_option('wpap_button_color', '#0073aa');
     $button_hover_color = get_option('wpap_button_hover_color', '#006799');
+    $button_text_color = get_option('wpap_button_text_color', '#ffffff');
     ?>
     <div class="wrap">
         <h1>Publications Settings</h1>
@@ -62,6 +64,14 @@ function wpap_settings_page_callback() {
                         <p class="description">Color when hovering over buttons</p>
                     </td>
                 </tr>
+                
+                <tr valign="top">
+                    <th scope="row">Button Text Color</th>
+                    <td>
+                        <input type="text" name="wpap_button_text_color" value="<?php echo esc_attr($button_text_color); ?>" class="wpap-color-picker" />
+                        <p class="description">Color of the text on buttons</p>
+                    </td>
+                </tr>
             </table>
             
             <?php submit_button(); ?>
@@ -74,11 +84,13 @@ function wpap_settings_page_callback() {
 function wpap_add_custom_button_colors() {
     $button_color = get_option('wpap_button_color', '#0073aa');
     $button_hover_color = get_option('wpap_button_hover_color', '#006799');
+    $button_text_color = get_option('wpap_button_text_color', '#ffffff');
     
     echo '<style>
         :root {
             --wpap-button-color: ' . esc_attr($button_color) . ';
             --wpap-button-hover-color: ' . esc_attr($button_hover_color) . ';
+            --wpap-button-text-color: ' . esc_attr($button_text_color) . ';
         }
     </style>';
 }
