@@ -7,8 +7,8 @@
 function wpap_add_settings_page() {
     add_submenu_page(
         'edit.php?post_type=publication',
-        'Publications Settings',
-        'Settings',
+        'Publications Style Settings',
+        'Style Settings',
         'manage_options',
         'wpap-settings',
         'wpap_settings_page_callback'
@@ -42,7 +42,7 @@ function wpap_settings_page_callback() {
     $button_text_color = get_option('wpap_button_text_color', '#ffffff');
     ?>
     <div class="wrap">
-        <h1>Publications Settings</h1>
+        <h1>Publications Style Settings</h1>
         
         <form method="post" action="options.php">
             <?php settings_fields('wpap_settings_group'); ?>
