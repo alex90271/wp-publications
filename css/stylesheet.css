@@ -36,10 +36,19 @@
 }
 
 #wpapTable tr:nth-child(odd) {
-    background-color: darkgrey;
+    background-color: #eee;
 }
 
 .wpap-title {
     font-weight: 600;
     margin-top: 5px;    
+}
+
+.wpap-category-button {
+    border: none;
+    background-color: lightgrey;
+    color: black;
+    padding: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
 }

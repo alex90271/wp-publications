@@ -380,7 +380,7 @@ function wpap_get_taxonomies()
 	);
 
 	foreach ($terms as $term) {
-		array_push($taxonomies_list, '<button class="wpap-button" onclick="searchListCategory(\'' . strval($term->name) . '\')">' . $term->name . '</button>');
+		array_push($taxonomies_list, '<button class="wpap-category-button" onclick="searchListCategory(\'' . strval($term->name) . '\')">' . $term->name . '</button>');
 	}
 
 	return $taxonomies_list;
